@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building...'
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+        snykSecurity(
+          snykInstallation: '<Snyk Installation Name>',
+          snykTokenId: '<Snyk API Token ID>',
+        )
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying...'
+      }
+    }
+  }
+}
